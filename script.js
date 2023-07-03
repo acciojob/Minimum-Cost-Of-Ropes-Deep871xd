@@ -1,32 +1,25 @@
-function calculateMinCost(arr) {
-  //your code here
-  let pq = [];
-   
-        // Adding items to the pQueue
-        for (let i = 0; i < n; i++) {
-            pq.push(arr[i]);
-        }   
-           
-        pq.sort(function(a,b){return a-b;});
-         
-        // Initialize result
-        let res = 0;
-   
-        // While size of priority queue
-        // is more than 1
-        while (pq.length > 1) {
-            // Extract shortest two ropes from pq
-            let first = pq.shift();
-            let second = pq.shift();
-   
-            // Connect the ropes: update result
-            // and insert the new rope to pq
-            res += first + second;
-            pq.push(first + second);
-            pq.sort(function(a,b){return a-b;});
-        }
-   
-        return res;
+function JsReverse(num) {
+  //return the string
+  //do not console.log here
+  let reversed = parseInt(num.toString().split('').reverse().join(''));
   
+  // Remove leading zeros
+  while (reversed % 10 === 0 && reversed !== 0) {
+    reversed = Math.floor(reversed / 10);
+  }
   
-}  
+  return reversed;
+}
+ 
+/*Do not change the code below */
+const rl = require("readline");
+ 
+const reader = rl.createInterface({
+  input: process.stdin,
+  output: process.stdout,
+});
+ 
+reader.on("line", (line) => {
+  const n = parseInt(line);
+  console.log(JsReverse(n));
+});
