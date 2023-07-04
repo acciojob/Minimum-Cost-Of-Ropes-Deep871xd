@@ -1,77 +1,40 @@
+function compare(a, b) {
+  if (a < b) {
+      return -1;
+  } else if (a > b) {
+      return 1;
+  } else {
+      return 0;
+  }
+}
+
 function calculateMinCost() {
-
-    function getTwoSum(arr){
-
-        let compressArr = [];
-    
-        if(arr.length >= 2){
-            let sum = arr[0] + arr[1];
-            compressArr.push(sum);
-    
-            for(let i = 2; i < arr.length; i++){
-                compressArr.push(arr[i]);
-            }
-        }
-    
-        console.log(compressArr+ ` compressedArr`);
-    
-        return compressArr;
-        
-    }
-
-	let form = document.getElementById("form");
-
-    let input = document.getElementById("rope-lengths").value;
-    let splitted = input.split(",");
-    console.log(splitted);
-
-    let minCost = 0; 
-
-    for(let x in splitted){
-        splitted[x] = Number(splitted[x]);
-    }
-
-    splitted.sort(function(a,b){
-        return a - b;
-    });
-
-    console.log(splitted + ` ----> splitted`);
-
-    if(splitted.length == 1){
-        minCost = splitted[0];
-    }else{
-
-        while(splitted.length > 1){
-            let receivedArr = getTwoSum(splitted);
-            // let receivedSum = getSum(splitted);
-            
-
-            console.log(receivedArr + `receivedArr`);
-
-            minCost = minCost + receivedArr[0];
-
-            console.log(minCost + `minCost`);
-
-            let rearrangedArr = receivedArr.sort(function(a, b){
-                return a - b;
-            });
-
-            console.log(rearrangedArr + `rearrangedArr`)
-
-            splitted = rearrangedArr;
-
-            console.log(splitted + `splitted`);
-        }
-        
-    }
+  //your code here
+  let str=document.getElementById('rope-lengths').value.split(",");
+  let arr=str.map((str)=>parseInt(str));
+  // console.log(arr);
+  
+let total=0;
+arr=arr.sort(compare);
+// console.log("arr ",arr);
+while(arr.length>=2){
+  let sum=arr[0]+arr[1];
+  // console.log(sum);
+  let rem=[];
+  rem.push(sum);
+  for(let k=2;k<arr.length;k++){
+    rem.push(arr[k]);
+  }
+  rem=rem.sort(compare);
+  // console.log("rem ",rem);
+  arr=[...rem];
+  // console.log("arr ",arr);
+  total=total+sum;
+  // console.log("total "+total+"----------------------");
+}
+console.log(total);
 
 
-    console.log(`final ` + minCost);
-    
-
-    let result = document.getElementById("result");
-    result.textContent = minCost;
-
-
-    
-  }  
+let result=document.getElementById('result');
+result.innerHTML=total;
+}  
