@@ -1,36 +1,32 @@
-function threeSum(arr, target) {
-// write your code here
-	arr.sort((a, b) => a - b);
+function calculateMinCost(arr) {
+  //your code here
+  let pq = [];
+   
+        // Adding items to the pQueue
+        for (let i = 0; i < n; i++) {
+            pq.push(arr[i]);
+        }   
+           
+        pq.sort(function(a,b){return a-b;});
+         
+        // Initialize result
+        let res = 0;
+   
+        // While size of priority queue
+        // is more than 1
+        while (pq.length > 1) {
+            // Extract shortest two ropes from pq
+            let first = pq.shift();
+            let second = pq.shift();
+   
+            // Connect the ropes: update result
+            // and insert the new rope to pq
+            res += first + second;
+            pq.push(first + second);
+            pq.sort(function(a,b){return a-b;});
+        }
+   
+        return res;
   
-  // Initialize variables
-  let closestSum = arr[0] + arr[1] + arr[2];
   
-  // Iterate through the array
-  for (let i = 0; i < arr.length - 2; i++) {
-    let left = i + 1;
-    let right = arr.length - 1;
-    
-    while (left < right) {
-      const sum = arr[i] + arr[left] + arr[right];
-      
-      // Check if the current sum is closer to the target
-      if (Math.abs(sum - target) < Math.abs(closestSum - target)) {
-        closestSum = sum;
-      }
-      
-      if (sum < target) {
-        left++;
-      } else if (sum > target) {
-        right--;
-      } else {
-        // Found an exact match, so return the sum
-        return sum;
-      }
-    }
-  }
-  
-  return closestSum;
-  
-}
- 
-module.exports = threeSum;
+}  
